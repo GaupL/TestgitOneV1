@@ -1,0 +1,36 @@
+  <div class=" vh-100 d-flex justify-content-center align-items-center">
+        <form [formGroup]="form" (submit)="onSubmit()">
+            <div class="p-5 rounded-4 wrapper" style="width: 400px; height: 420px;">
+                <div style="margin-top: -1rem;">
+                <div class="row text-center mb-2">
+                     <h2 class="fw-bold text-success">Sign in</h2>
+                </div>
+                <div class="row mb-1">
+                    <h5 class="fw-bold fw-5">Email</h5>
+                </div>
+                <div class="row mb-2">
+                    <input type="text" class="form-control fs-5" formControlName="email">
+                    <div class="text-danger" *ngIf="hasDisplaybleError('email') && form.controls.email.hasError('required')">
+                        Please enter your full email address.
+                    </div>
+                </div>
+                <div class="row mb-1">
+                    <h5 class="fw-bold fw-5">Password</h5>
+                </div>
+                <div class="row mb-3">
+                    <input type="password" class="form-control fs-5" formControlName="password">
+                    <div class="text-danger" *ngIf="hasDisplaybleError('password') && form.controls.password.hasError('required')">
+                        Please enter your full password.
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <button class="btn btn-secondary fs-4">Login</button>
+                </div>
+                <div class="row">
+                    <span style="font-size: 18px;">Don't have an account? <a class="text-danger" routerLink="register">Register</a></span>
+                </div>
+                </div>
+            </div>
+        </form>
+    </div>
+

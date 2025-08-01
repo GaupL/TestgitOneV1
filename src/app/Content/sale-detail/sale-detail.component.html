@@ -1,0 +1,105 @@
+<div class="container">
+    <form #formdata="ngForm" (submit)="searchData()">
+        <div class="row">
+            <div class="col-6">
+                <p class="fw-bold fs-4 ms-2 p-2">เพิ่มข้อมูลหนักงาน</p>
+            </div>
+        </div>
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <div class="row mb-2">
+                    <div class="col-2 text-end p-1 fs-6">
+                        ชื่อ :
+                    </div>
+                    <div class="col-4">
+                        <input type="text" class="form-control" #txtname="ngModel" name="txtname"
+                            [(ngModel)]="serviceCus.model.name" required>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-2 text-end p-1 fs-6">
+                        นามสกุล :
+                    </div>
+                    <div class="col-4">
+                        <input type="text" class="form-control" #txtlastname="ngModel" name="txtlastname"
+                            [(ngModel)]="serviceCus.model.lastname" required>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-2 text-end p-1 fs-6">
+                        ที่อยู่ :
+                    </div>
+                    <div class="col-4">
+                        <input type="text" class="form-control" #txtaddress="ngModel" name="txtaddress"
+                            [(ngModel)]="serviceCus.model.address" required>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-3 offset-2">
+                        <button class="btn btn-outline-secondary w-25" type="submit">ค้นหา</button>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <button class="btn btn-success" (click)="addData()"><i class="fa-solid fa-plus"></i>
+                        เพิ่มพนักงาน</button>
+                    <span class="text-danger">ผลการค้นหาทั้งหมด {{serviceCus.modelList.length}}</span>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+    <div class="container-fluid">
+        <table class="table table-bordered table-hover ">
+            <thead>
+                <tr class="text-center">
+                    <th>#</th>
+                    <th>ชื่อ-นามสกุล</th>
+                    <th>ที่อยู่</th>
+                    <th>เบอร์โทร</th>
+                    <th style="width: 150px;">ยอดขายต่อเดือน</th>
+                    <th>แก้ไข</th>
+                    <th>ลบ</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let item of serviceCus.modelList;index as i;">
+                <tr class="text-center">
+                    <th>{{i+1}}</th>
+                    <th>{{item.name}} {{item.lastname}}</th>
+                    <th>{{item.address}}</th>
+                    <th>{{item.tel}}</th>
+                    <th><button class="btn btn-secondary" data-bs-target="#ShowChart" data-bs-toggle="modal"
+                            (click)="dataChartById(item)"><i class="fa-solid fa-signal"></i></button></th>
+                    <th><button class="btn btn-warning" (click)="EditCustomer(item.cusId)"><i
+                                class="fa-regular fa-pen-to-square"></i></button></th>
+                    <th><button class="btn btn-danger" (click)="deleteCus(item.cusId,item)"><i
+                                class="fa-regular fa-trash-can"></i></button></th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<div class="modal fade" id="ShowChart" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">กราฟแสดงยอดขาย</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex justify-content-between">
+        <p> {{dataSale.name}} {{dataSale.lastname}}</p>
+        <select class="form-select text-center" style="width: 15%;" (change)="selectyear()" [(ngModel)]="NewYear">
+            <option value="2025">2568</option>
+            <option value="2026">2569</option>
+            <option value="2027">2570</option>
+            <option value="2028">2571</option>
+        </select>
+        </div>
+
+        <canvas id="MyChart"></canvas>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" data-bs-dismiss="modal" style="width: 15%;">ปิด</button>
+      </div>
+    </div>
+  </div>
+</div>

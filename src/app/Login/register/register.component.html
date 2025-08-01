@@ -1,0 +1,111 @@
+<div class="container-fluid vh-100">
+    <div class="d-flex justify-content-center align-items-center h-100">
+        <form [formGroup]="form" (submit)="resetformModel()">
+        <div class="p-5 wrapper" style="width: 1050px;">
+            <div class="row text-center mb-2">
+                <h1 class="text-success">Register</h1>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <h5>Name</h5>
+                </div>
+                <div class="col-6">
+                    <h5>NickName</h5>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-6">
+                    <input type="text" class="form-control fs-5" formControlName="name" >
+                    <div class="text-danger" *ngIf="hadDisplaybleError('name') && form.controls.name.hasError('required')">
+                        Please enter your name.
+                    </div>
+                </div>
+                <div class="col-6">
+                    <input type="text" class="form-control fs-5" formControlName="nickname">
+                    <div class="text-danger" *ngIf="hadDisplaybleError('nickname') && form.controls.nickname.hasError('required')">
+                        Please enter your nickname.
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <h5>Email</h5>
+                </div>
+                <div class="col-6">
+                    <h5>Address</h5>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-6">
+                    <input type="text" class="form-control fs-5" formControlName="email">
+                    <div class="text-danger" *ngIf="hadDisplaybleError('email') && form.controls.email.hasError('required')">
+                        Please enter your email address.
+                    </div>
+                </div>
+                <div class="col-6">
+                    <input type="text" class="form-control fs-5" formControlName="address">
+                    <div class="text-danger" *ngIf="hadDisplaybleError('address') && form.controls.address.hasError('required')">
+                        Please enter your address.
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <h5>Password</h5>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-6">
+                    <input class="form-control fs-5" type="password" formControlName="password" minlength="6">
+                    <div class="text-danger" *ngIf="hadDisplaybleError('password')">
+                        <ng-container [ngSwitch]="form.controls.password.errors | firstkey">
+                            <div *ngSwitchCase="'required'">
+                                 Please enter you password
+                            </div>
+                            <div *ngSwitchCase="'minlength'">
+                                Atleast 6 characters required.
+                            </div>
+                            <div *ngSwitchCase="'pattern'">
+                                One or more special character(s).
+                            </div> 
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <h5>Confirm Password</h5>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-6">
+                    <input  class="form-control fs-5" type="password" formControlName="confirmPassword">
+                    <div class="text-danger" *ngIf="hadDisplaybleError('confirmPassword') && form.controls.confirmPassword.hasError('passwordMismatch')">
+                         Passwords doesn't match
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-4 d-flex justify-content-between">
+                    <div class="form-check">
+                         <label for="lb1" class="form-check-label" style="font-size: 1.25rem;font-weight: 600; margin-top: -0.5rem;">Admin</label>
+                        <input type="radio" class="form-check-input"  id="lb1" formControlName="role" value="admin">
+                    </div>
+                         <div class="form-check">
+                        <label for="lb2" class="form-check-label" style="font-size: 1.25rem;font-weight: 600; margin-top: -0.5rem;">User</label>
+                        <input type="radio" class="form-check-input" formControlName="role"  id="lb2" value="user" checked>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-12 text-start">
+                    <button class="btn btn-secondary w-50 fs-5">Save</button>
+                </div>
+            </div>
+            <div class="row">
+                <span style="font-size: 18px;">Already have an account? <a class="text-danger" routerLink=""> Signin</a></span>
+            </div>
+        </div>   
+    </form>
+    </div>
+</div>

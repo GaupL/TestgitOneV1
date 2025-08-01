@@ -1,0 +1,57 @@
+<div class="container">
+    <form [formGroup]="form" (submit)="addData()">
+
+    <div class="row">
+        <div class="col-6">
+            <p class="fw-bold fs-5 ms-2 p-2">เพิ่มข้อมูลหนักงาน</p>
+        </div>
+         <hr>
+    </div>
+    <div class="row mb-2">
+        <div class="col-2 text-end p-1 fs-6">
+            ชื่อ :
+        </div>
+        <div class="col-4">
+            <input type="text" class="form-control" formControlName="name" required>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-2 text-end p-1 fs-6">
+            นามสกุล :
+        </div>
+        <div class="col-4">
+            <input type="text" class="form-control" formControlName="lastname" required>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-2 text-end p-1 fs-6">
+            ที่อยู่ :
+        </div>
+        <div class="col-4">
+            <input type="text" class="form-control" formControlName="address" required>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-2 text-end p-1 fs-6">
+            เบอร์โทร :
+        </div>
+        <div class="col-4">
+            <input type="text" class="form-control" maxlength="10" formControlName="tel" required>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-2 text-end p-1 fs-6">
+            วัน/เดือน/ปีเกิด :
+        </div>
+        <div class="col-4">
+            <input type="date" name="" id="" class="form-control w-50" formControlName="dob">
+        </div>
+    </div>
+    <div class="row mb-2">
+            <div class="col-3 offset-2">
+                <button class="btn btn-success w-25" type="submit">บันทึก</button>
+                <button class="btn btn-danger w-25 ms-2" (click)="cancel()">ยกเลิก</button>
+            </div>
+    </div> 
+    </form>
+</div>

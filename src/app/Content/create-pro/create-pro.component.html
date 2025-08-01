@@ -1,0 +1,94 @@
+<div class="container">
+    <form [formGroup]="form" (submit)="onSubmit1()">
+<div class="row">
+        <div class="col-6">
+            <p class="fw-bold fs-5 ms-2 p-2">เพิ่มข้อมูลโครงการ</p>
+        </div>
+        <hr>
+    </div>
+    <input type="hidden" formControlName="userId">
+    <div class="row mb-2">
+        <div class="col-2 text-end p-1 fs-6">
+            ชื่อโครงการ :
+        </div>
+        <div class="col-4">
+            <input type="text" class="form-control w-75" formControlName="productName" required>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-2 text-end p-1 fs-6">
+            ผู้ขาย :
+        </div>
+        <div class="col-4">
+            <select class="form-select w-50 text-center" formControlName="cusId">
+                <option value="" >-- ทั้งหมด --</option>
+                <option *ngFor="let item of serviceCus.modelList" [value]="item.cusId">{{item.name}}</option>
+
+            </select>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-2 text-end p-1 fs-6">
+            ผู้รับผิดชอบ :
+        </div>
+        <div class="col-4">
+            <select class="form-select w-50 text-center" formControlName="empId">
+                <option value="">-- ทั้งหมด --</option>
+                <option *ngFor="let item of serviceEmp.modelList" [value]="item.empId">{{item.name}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-2 text-end p-1 fs-6">
+            จำนวนเงิน :
+        </div>
+        <div class="col-4">
+            <input type="text" class="form-control w-75" formControlName="price" required>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-2 text-end p-1 fs-6">
+            ผู้ติดต่อ :
+        </div>
+        <div class="col-4">
+            <input type="text" class="form-control w-75" formControlName="contact" required>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-2 text-end p-1 fs-6">
+            เบอร์โทร :
+        </div>
+        <div class="col-4">
+            <input type="text" maxlength="10" class="form-control w-75" formControlName="tel" required>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-2 text-end p-1 fs-6">
+            สถานะ :
+        </div>
+        <div class="col-4 d-flex justify-content-evenly align-items-center" style="margin-left: -3rem;">
+            <div class="form-check">
+                <label for="lb4" class="form-check-label">ใช้</label>
+                <input type="radio" [value]="0" class="form-check-input" id="lb4" formControlName="status">
+            </div>
+            <div class="form-check">
+                <label for="lb5" class="form-check-label">ไม่ได้ใช้</label>
+                <input type="radio" [value]="1" class="form-check-input" id="lb5" formControlName="status">
+            </div>
+            <div class="form-check">
+                <label for="lb6" class="form-check-label">ยกเลิก</label>
+                <input type="radio" [value]="2"  class="form-check-input" id="lb6" formControlName="status">
+            </div>
+        </div>
+    </div>
+        <div class="row mb-2">
+        <div class="col-2 text-end p-1 fs-6">
+
+        </div>
+        <div class="col-4 d-flex ms-1">
+            <button class="btn btn-success" type="submit">บันทึก</button>
+            <button class="btn btn-danger ms-2" (click)="cancel()" >ยกเลิก</button>
+        </div>
+    </div>
+    </form>
+</div>

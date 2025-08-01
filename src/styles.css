@@ -1,0 +1,23 @@
+@import 'ngx-toastr/toastr';
+.wrapper{
+    border: 2px solid rgba(255, 255, 255, .5);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+}
+    /* You can add global styles to this file, and also import other style files */
+.nav-link{
+    color: white;
+}
+.nav-link:hover{
+    color: aqua;
+    transition: 1s;
+}
+
+.table thead {
+  background-color: #293b5f ;
+  color: white ;
+}
+.table thead th {
+  background-color: #293b5f ;
+  color: white ;
+}

@@ -1,0 +1,114 @@
+<div class="container">
+    <form #form="ngForm" (ngSubmit)="onFilterChange()">
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <div class="row mb-2">
+                <div class="col-2 text-end p-1 fs-6">
+                    ชื่อโครงการ :
+                </div>
+                <div class="col-4">
+                    <input type="text" class="form-control w-75" name="productName"
+                        [(ngModel)]="servicePro.model.productName">
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-2 text-end p-1 fs-6">
+                    ผู้ขาย :
+                </div>
+                <div class="col-4">
+                    <select id="" class="form-select w-75" [(ngModel)]="servicePro.model.cusId" name="customerId"
+                        (change)="onFilterChange()">
+                        <option value="">--ทั้งหมด--</option>
+                        <option value="{{item.cusId}}" *ngFor="let item of serviceCus.modelList">{{item.name}}</option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-2 text-end p-1 fs-6">
+                    ผู้รับผิดชอบ :
+                </div>
+                <div class="col-4">
+                    <select id="" class="form-select w-75" [(ngModel)]="servicePro.model.empId" name="empId"
+                        (change)="onFilterChange()">
+                        <option value="">--ทั้งหมด--</option>
+                        <option *ngFor="let item of serviceEmp.modelList" value="{{item.empId}}">{{item.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-2 text-end p-1 fs-6">
+                    จำนวนเงินตั้งแต่ :
+                </div>
+                <div class="col-3 d-flex justify-content-between">
+                    <input type="text" name="price" [(ngModel)]="servicePro.model.price" class="form-control w-75">
+                    <span class="p-2">ถึง</span>
+                    <input type="text" name="toPrice" [(ngModel)]="servicePro.model.toPrice" class="form-control w-75">
+                </div>
+
+            </div>
+            <div class="row mb-2">
+                <div class="col-2 text-end p-1 fs-6">
+                    สถานะ :
+                </div>
+                <div class="col-4 d-flex justify-content-evenly align-items-center" style="margin-left: -3rem;">
+                    <div class="form-check">
+                        <label for="lb1" class="form-check-label">ใช้</label>
+                        <input type="radio" [value]="0" id="lb1" class="form-check-input" (change)="onFilterChange()"
+                            name="statusUser" [(ngModel)]="servicePro.model.status">
+                    </div>
+                    <div class="form-check">
+                        <label for="lb2" class="form-check-label">ไม่ได้ใช้</label>
+                        <input type="radio" [value]="1" class="form-check-input" (change)="onFilterChange()"
+                            name="statusUser" id="lb2" name="statusUser" [(ngModel)]="servicePro.model.status">
+                    </div>
+                    <div class="form-check">
+                        <label for="lb3" class="form-check-label">ยกเลิก</label>
+                        <input type="radio" [value]="2" class="form-check-input" (change)="onFilterChange()"
+                            name="statusUser" id="lb3" name="statusUser" [(ngModel)]="servicePro.model.status">
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-3 offset-2">
+                    <button class="btn btn-outline-secondary w-25" type="submit">ค้นหา</button>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+                <button class="btn btn-success" (click)="addData()"><i class="fa-solid fa-plus"></i> เพิ่มรายการ</button>
+                <span class="text-danger">ผลการค้นหาทั้งหมด  {{servicePro.modelList.length}}</span>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
+<div class="container-fluid">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr class="text-center">
+                <th>#</th>
+                <th>ชื่อ</th>
+                <th>ผู้ขาย</th>
+                <th>ผู้รับผิดชอบ</th>
+                <th>จำนวน</th>
+                <th>ติดต่อ</th>
+                <th>เบอร์โทร</th>
+                <th>แก้ไข</th>
+                <th>ลบข้อมูล</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of servicePro.modelList;index as i" class="text-center">
+                <th>{{i+1}}</th>
+                <td>{{item.productName}}</td>
+                <td>{{item.cusName}}</td>
+                <td>{{item.empName}}</td>
+                <td>{{item.price | number:'1.2-2'}}</td>
+                <td>{{item.contact}}</td>
+                <td>{{item.tel}}</td>
+                <td><button class="btn btn-warning" (click)="dataEdit(item.productId)"><i class="fa-regular fa-pen-to-square"></i></button></td>
+                <td><button class="btn btn-danger" (click)="dataDelete(item.productId,item)"><i class="fa-regular fa-trash-can"></i></button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

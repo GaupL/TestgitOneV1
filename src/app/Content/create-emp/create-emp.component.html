@@ -1,0 +1,90 @@
+<div class="container">
+    <form [formGroup]="form" (submit)="saveData()">
+    <div class="row">
+        <div class="col-6">
+            <p class="fw-bold fs-5 ms-2 p-2">เพิ่มข้อมูลผู้รับผิดชอบ</p>
+        </div>
+         <hr>
+    </div>
+     <div class="row">
+     <div class="col-6">
+    <div class="row mb-2">
+        <div class="col-4 text-end p-1 fs-6">
+            ชื่อ :
+        </div>
+        <div class="col-8">
+            <input type="text" class="form-control" formControlName="name" required>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-4 text-end p-1 fs-6">
+            นามสกุล :
+        </div>
+        <div class="col-8">
+            <input type="text" class="form-control" formControlName="lastname" required>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-4 text-end p-1 fs-6">
+            อายุ :
+        </div>
+        <div class="col-8">
+            <input type="text" class="form-control" formControlName="age" required>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-4 text-end p-1 fs-6">
+            Email :
+        </div>
+        <div class="col-8">
+            <input type="text" class="form-control" formControlName="email" required>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-4 text-end p-1 fs-6">
+            เบอร์โทร :
+        </div>
+        <div class="col-8">
+            <input type="text" maxlength="10" class="form-control" formControlName="tel" required maxlength="10">
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-4 text-end p-1 fs-6">
+            ที่อยู่ :
+        </div>
+        <div class="col-8">
+            <input type="text" class="form-control" formControlName="address" required maxlength="10">
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-4 text-end p-1 fs-6">
+           
+        </div>
+        <div class="col-8">
+            <input type="file" id="fileInput" #fileInput accept="image/*" class="d-none" (change)="ImageSelect($event)">
+            <button type="button" (click)="fileInput.click()" class="form-control">เลือกรูปภาพ
+                <i class="fa-solid fa-image fa-lg"></i>
+            </button>
+        </div>
+        <div class="col">
+            <!-- @if(imageBase64){
+                <img height="250" [src]="imageBase64" />
+            }  -->
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-4 text-end p-1 fs-6"></div>
+        <div class="col-8 text-start">
+            <button class="btn btn-success w-25" type="submit">บันทึก</button>
+            <button class="btn btn-danger w-25 ms-2" (click)="calcel()">ยกเลิก</button>
+        </div>
+    </div>
+    </div>
+    <div class="col-6">
+            @if(imageBase64){
+                <img height="250" [src]="imageBase64" />
+            } 
+    </div>
+    </div>
+    </form>
+</div>

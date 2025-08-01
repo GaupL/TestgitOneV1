@@ -1,0 +1,110 @@
+<div class="container">
+    <form #formData="ngForm" (ngSubmit)="submitForm1()" >
+        <input type="hidden" [value]="service.model.empId">
+    <div class="row">
+        <div class="col-6">
+            <p class="fw-bold fs-4 ms-2 p-2">ข้อมูลผู้รับผิดชอบ</p>
+        </div>
+    </div>
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+    <div class="row mb-2">
+        <div class="col-2 text-end p-1 fs-6">
+            ชื่อพนักงาน :
+        </div>
+        <div class="col-4">
+            <input type="text" class="form-control w-75" #txtname="ngModel" name="txtname" [(ngModel)]="service.model.name">
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-2 text-end p-1 fs-6">
+            นามสกุล :
+        </div>
+        <div class="col-4">
+            <input type="text" class="form-control w-75" #txtlastname="ngModel" name="txtlastname" [(ngModel)]="service.model.lastname">
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-2 text-end p-1 fs-6">
+            ช่วงอายุ :
+        </div>
+        <div class="col-3 d-flex justify-content-between">
+            <input type="text" class="form-control w-75" #txtage="ngModel" name="txtage" [(ngModel)]="service.model.age">
+            <span class="p-2">ถึง</span>
+            <input type="text" class="form-control w-75" #txtageTo="ngModel" name="txtageTo" [(ngModel)]="service.model.toage">
+        </div>
+
+    </div>
+    <div class="row mb-2">
+            <div class="col-3 offset-2">
+                <button class="btn btn-outline-secondary w-25" type="submit">ค้นหา</button>
+            </div>
+    </div>
+    <div class="d-flex justify-content-between align-items-center">
+            <button class="btn btn-success" (click)="addData()"><i class="fa-solid fa-plus"></i> เพิ่มผู้รับผิดชอบ</button>
+            <span class="text-danger">ผลการค้นหาทั้งหมด  {{service.modelList.length}}</span>
+    </div>
+    </div>
+    </div>
+     </form>
+    <div class="container">
+        <div class="row mb-3 justify-content-start">
+            <div class="col-md-4 col-sm-3 mt-2" *ngFor="let item of service.modelList; index as i">
+                <div class="border p-3 h-100 text-center">
+                    <p class="text-start">{{i+1}} </p>
+                     @if (item.picture == undefined || null) {
+                    <img src="{{url}}People/man-303792_640.png" alt="Profile" width="200" height="189" class="mb-2 ">
+                    }
+                    @else {
+                    <img src="{{url}}{{item.picture}}" alt="Profile" width="200" height="189" class="mb-2 rounded-2">
+                    } 
+                    <div class="row p-1">
+                        <div class="col-4 text-end">
+                            <strong>ชื่อ:</strong>
+                        </div>
+                        <div class="col text-start" style="margin-left: -18px;">
+                            <span> {{ item.name }} {{item.lastname}} </span>
+                        </div>
+                    </div>
+                    <div class="row p-1">
+                        <div class="col-4 text-end">
+                            <strong>อายุ:</strong>
+                        </div>
+                        <div class="col text-start" style="margin-left: -18px;">
+                            <span> {{ item.age }}</span>
+                        </div>
+                    </div>
+                    <div class="row p-1">
+                        <div class="col-4 text-end">
+                            <strong>อีเมล:</strong>
+                        </div>
+                        <div class="col text-start" style="margin-left: -18px;">
+                            <span> {{ item.email }}</span>
+                        </div>
+                    </div>
+                    <div class="row p-1">
+                        <div class="col-4 text-end" >
+                            <strong>เบอร์โทร:</strong>
+                        </div>
+                        <div class="col text-start" style="margin-left: -18px;">
+                            <span> {{ item.tel }}</span>
+                        </div>
+                    </div>
+                    <div class="row p-1">
+                        <div class="col-4 text-end" >
+                            <strong>ที่อยู่:</strong>
+                        </div>
+                        <div class="col text-start" style="margin-left: -18px;">
+                            <span> {{ item.address }}</span>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between mt-2">
+                        <button class="btn btn-warning w-25" (click)="onEdit(item.empId)"><i class="fa-regular fa-pen-to-square"></i></button>
+                        <button class="btn btn-danger w-25" (click)="deleteData(item.empId,item);"><i class="fa-regular fa-trash-can"></i></button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
